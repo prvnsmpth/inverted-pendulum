@@ -273,7 +273,6 @@ public class PendulumAnimation
     
     public PendulumAnimation()
     {
-        try {
             frame = new JFrame("Inverted Pendulum");
             frame.setVisible(true);
             ai = new InvertedPendulumAI("gauss");
@@ -297,11 +296,7 @@ public class PendulumAnimation
             frame.add(paintPanel);
             frame.add(controlPanel);
             
-            frame.validate();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(PendulumAnimation.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            frame.validate();                    
         
     }
     
