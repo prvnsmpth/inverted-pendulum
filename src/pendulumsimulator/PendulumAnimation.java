@@ -278,9 +278,6 @@ public class PendulumAnimation
             frame.setVisible(true);
             ai = new InvertedPendulumAI("gauss");
             
-            out = new File("output.txt");
-            outw = new FileWriter(out);
-            
             mass = 10f;
             I = mass * (rodlength) * (rodlength);
             
