@@ -310,28 +310,15 @@ public class PendulumAnimation
     
     public void run()
     {
-        
-        // run for all theta and omega
-        double _theta = 1.025;
-        for (float _m = 70; _m >= 0; _m -= 0) {
-
-            // set theta, omega         
-         mass = _m;
-         boolean found = false;          
-         while(_theta < Math.PI/2) {
-         //for (double _theta = 0.0; _theta < 2; _theta += 0.1) {
             t = 0.0f;       
             time = 0.0f;
-
-            theta = _theta;
-            omega = 0.0;
             
             // schedule timer
             timer = new Timer();
             UpdateTimeTask timerTask = new UpdateTimeTask();
             timer.schedule(timerTask, 0, 10);
 
-            while ((Math.abs(theta) >= 1e-4 || Math.abs(omega) >= 1e-3) && time < 2)
+            while (Math.abs(theta) > 1e-4)
             {                                               
 
                 // get current
@@ -360,71 +347,17 @@ public class PendulumAnimation
                 } else if (theta < -3.14) {
                     theta += 2 * 3.14;
                 }
-
-    //            try {
-    //                // write to log file
-    //                outw.write(t + " " + theta + " " + omega + " " 
-    //                          + current + "\n");
-    //                //System.out.println(t + " " + theta + " " + omega + " " 
-    //                   //       + current + "\n");
-    //            } catch (IOException ex) {
-    //                Logger.getLogger(PendulumAnimation.class.getName()).log(Level.SEVERE, null, ex);
-    //            }
-
+                
                 // force the panel to repaint itself
                 paintPanel.repaint();
 
-                // wait 50ms
+                // wait 100ms
                 try {  
                     Thread.sleep((long) dt * 100);
                 } catch (Exception ex) {} 
-                
-                if (Math.abs(theta) > Math.PI/2) {
-                    try {
-                        outw.write(_m + " " + _theta + "\n");
-                        System.out.println(_m + " " + _theta);
-                    } catch (IOException ex) {
-                        Logger.getLogger(PendulumAnimation.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    found = true;
-                    break;
-                }                                
+                                                             
 
-            } // simulation 'while'                        
-
-            // write time to stability
-//            try {
-//                // write to log file
-//                outw.write(_omega + " " 
-//                            + time + "\n");
-//                System.out.println("(" + _omega + ") : Time to stability: " + time);
-//            } catch (Exception ex) {
-//                System.out.println("Error: " + ex.getMessage());
-//            }                                
-           
-            timer.cancel();
-            
-            if (found) 
-            {
-                break;                  
-            }
-            else
-            {
-                //_theta += 0.025;
-            }
-         } /* try all theta */
-         
-         if (!found) {
-             try {
-                outw.write(_m + " " + Math.PI/2 + "\n");
-                 System.out.println(_m + " " + Math.PI/2);
-            } catch (IOException ex) {
-                Logger.getLogger(PendulumAnimation.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         }
-         
-        } /* try all k */               
-        
+            }               
     }
     
    
