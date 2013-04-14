@@ -310,7 +310,7 @@ public class PendulumAnimation
             UpdateTimeTask timerTask = new UpdateTimeTask();
             timer.schedule(timerTask, 0, 10);
 
-            while (Math.abs(theta) > 1e-4)
+            while (Math.abs(theta) > 1e-4 || Math.abs(omega) > 1e-3)
             {                                               
 
                 // get current
